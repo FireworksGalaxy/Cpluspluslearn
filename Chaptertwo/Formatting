@@ -1,0 +1,4 @@
+CPP Core Guidline: http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines
+Google           : https://google.github.io/styleguide/cppguide.html
+LLVM             : https://llvm.org/docs/CodingStandards.html
+GCC              : https://gcc.gnu.org/codingconventions.html
