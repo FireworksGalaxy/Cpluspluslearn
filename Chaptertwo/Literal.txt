@@ -12,3 +12,6 @@ Binary= Takes two operand! EX: 3+4; It takes from left and right!
 Ternary operators act on three operands. There is only one of these in C++ (the conditional operator).
 Nullary operators act on zero operands. There is also only one of these in C++ (the throw operator).
 
+
+** There are a few operators that do not produce return values (such as delete and throw)
+
