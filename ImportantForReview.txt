@@ -1,0 +1,6 @@
+
+- Review the initialization again!
+- Json task and Settings of JSON files
+- Run Multiple files in lesson 2.8
+- Install the MINGW, and VS Code again
+- 
