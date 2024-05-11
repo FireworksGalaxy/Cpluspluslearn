@@ -1,0 +1,29 @@
+1.   ==> Naming Collision <==
+
+If two identical identifiers are introduced into the same program in a way that the compiler or linker can’t tell them apart, the compiler or linker will produce an error. 
+This error is generally referred to as a naming collision (or naming conflict).
+
+If the colliding identifiers are introduced into the same file, the result will be a compiler error.
+If the colliding identifiers are introduced into separate files belonging to the same program, the result will be a linker error.
+
+2. The :: symbol is an operator called the scope resolution operator.
+The identifier to the left of the :: symbol identifies the namespace that the name to the right of the :: symbol is contained within.
+
+3. This program has compilation error!
+#include <iostream> // imports the declaration of std::cout into the global scope
+
+using namespace std; // makes std::cout accessible as "cout"
+
+int cout() // defines our own "cout" function in the global namespace
+{
+    return 5;
+}
+
+int main()
+{
+    cout << "Hello, world!"; // Compile error!  Which cout do we want here?  The one in the std namespace or the one we defined above?
+
+    return 0;
+}
+
+==>Reason : The above program doesn’t compile, because the compiler now can’t tell whether we want the cout function that we defined, or std::cout.
