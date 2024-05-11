@@ -37,3 +37,15 @@ int main()
 	return 0;
 }
 
+
+%%
+int getNumbers()
+{
+    return 5;
+    return 7;
+}
+
+It should be noted that the function exit from first return! It doesn't read the return 7!
+
+
+
