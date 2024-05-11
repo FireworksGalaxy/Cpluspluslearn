@@ -1,0 +1,26 @@
+- A function is a reusable sequence of statements designed to do a particular job.
+- You already know that every executable program must have a function named main .
+- Functions that you write yourself are called user-defined functions.
+-The function initiating the function call is the caller, and the function being called is the callee or called function.
+
+returnType functionName() // This is the function header (tells the compiler about the existence of the function)
+{
+    // This is the function body (tells the compiler what the function does)
+}
+
+- Any function can call any other function.
+
+- Nested functions are not supported
+
+#include <iostream>
+
+int main()
+{
+    void foo() // Illegal: this function is nested inside function main()
+    {
+        std::cout << "foo!\n";
+    }
+
+    foo(); // function call to foo()
+    return 0;
+}
