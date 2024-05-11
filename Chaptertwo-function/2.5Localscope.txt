@@ -1,0 +1,66 @@
+1. Variables defined inside the body of a function are called local variables
+2. The destroyed object becomes invalid! At some point after destruction, the memory used by the object will be freed up for reuse.
+
+3. Here’s a slightly more complex example. Remember, lifetime is a runtime property, and scope is a compile-time property, 
+so although we are talking about both in the same program, they are enforced at different points.
+#include <iostream>
+
+int add(int x, int y) // x and y are created and enter scope here
+{
+    // x and y are visible/usable within this function only
+    return x + y;
+} // y and x go out of scope and are destroyed here
+
+int main()
+{
+    int a{ 5 }; // a is created, initialized, and enters scope here
+    int b{ 6 }; // b is created, initialized, and enters scope here
+
+    // a and b are usable within this function only
+    std::cout << add(a, b) << '\n'; // calls function add() with x=5 and y=6
+
+    return 0;
+} // b and a go out of scope and are destroyed here
+
+Execution starts at the top of main.
+main variable a is created and given value 5.
+main variable b is created and given value 6.
+Function add is called with argument values 5 and 6.
+add parameters x and y are created and initialized with values 5 and 6 respectively.
+The expression x + y is evaluated to produce the value 11.
+add copies the value 11 back to caller main.
+add parameters y and x are destroyed.
+main prints 11 to the console.
+main returns 0 to the operating system.
+main variables b and a are destroyed.
+
+
+4. First, we need to recognize that even though functions main and add both have variables named x and y, these variables are distinct.
+The x and y in function main have nothing to do with the x and y in function add -- they just happen to share the same names.
+
+#include <iostream>
+
+int add(int x, int y) // add's x and y are created and enter scope here
+{
+    // add's x and y are visible/usable within this function only
+    return x + y;
+} // add's y and x go out of scope and are destroyed here
+
+int main()
+{
+    int x{ 5 }; // main's x is created, initialized, and enters scope here
+    int y{ 6 }; // main's y is created, initialized, and enters scope here
+
+    // main's x and y are usable within this function only
+    std::cout << add(x, y) << '\n'; // calls function add() with x=5 and y=6
+
+    return 0;
+} // main's y and x go out of scope and are destroyed here
+
+
+Same name of X, and Y in add and main function , make no differences in the scope and lifetime !!
+
+5. A temporary object (also sometimes called an anonymous object) is an unnamed object that is created by the compiler to store a value temporarily.
+Return will be destroyed at the end of the function, the caller receives a copy of the value so that it has a value it can use even after return is destroyed.
+But where is the return value that is copied back to the caller stored? We haven’t defined any variables in main(). 
+The answer is that the return value is stored in a temporary object. 
