@@ -47,5 +47,5 @@ int getNumbers()
 
 It should be noted that the function exit from first return! It doesn't read the return 7!
 
-
-
+- DRY: “don’t repeat yourself”
+- WET: (“Write everything twice”).
