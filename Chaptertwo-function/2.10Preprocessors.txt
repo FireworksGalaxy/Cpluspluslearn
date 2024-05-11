@@ -1,0 +1,104 @@
+1. The entire process of preprocessing, compiling, and linking is called translation.
+
+2. Using directives (introduced in lesson 2.9 -- Naming collisions and an introduction to namespaces) are not preprocessor directives (and thus are not processed by the preprocessor).
+So while the term directive usually means a preprocessor directive, this is not always the case.
+
+3. There are two basic types of macros: object-like macros, and function-like macros.
+
+   ==> Function-like macros act like functions, and serve a similar purpose.
+      Their use is generally considered unsafe, and almost anything they can do can be done by a normal function.
+
+Object-like macros can be defined in one of two ways:
+
+1) #define IDENTIFIER
+2) #define IDENTIFIER substitution_text      
+
+#include <iostream>
+
+#define MY_NAME "Alex"
+
+int main()
+{
+    std::cout << "My name is: " << MY_NAME << '\n';
+
+    return 0;
+}
+
+4. The conditional compilation preprocessor directives allow you to specify under what conditions something will or won’t compile. 
+we mention three here: #ifdef, #ifndef, and #endif.
+
+  |*|==>The #ifdef preprocessor directive allows the preprocessor to check whether an identifier has been previously #defined. 
+  If so, the code between the #ifdef and matching #endif is compiled. If not, the code is ignored.
+
+    |*|==>#ifndef is the opposite of #ifdef, in that it allows you to check whether an identifier has NOT been #defined yet.
+  
+5. ===> Example 2:
+#include <iostream>
+
+#define PRINT_JOE
+
+int main()
+{
+#ifdef PRINT_JOE
+    std::cout << "Joe\n"; // will be compiled since PRINT_JOE is defined
+#endif
+
+#ifdef PRINT_BOB
+    std::cout << "Bob\n"; // will be excluded since PRINT_BOB is not defined
+#endif
+
+    return 0;
+}
+
+
+6. If 0
+#include <iostream>
+
+int main()
+{
+    std::cout << "Joe\n";
+
+#if 0 // Don't compile anything starting here
+    std::cout << "Bob\n";
+    std::cout << "Steve\n";
+#endif // until this point
+
+    return 0;
+}
+
+
+7. #include <iostream>
+
+int main()
+{
+    std::cout << "Joe\n";
+
+#if 1 // always true, so the following code will be compiled
+    std::cout << "Bob\n";
+    /* Some
+     * multi-line
+     * comment here
+     */
+    std::cout << "Steve\n";
+#endif
+
+    return 0;
+}
+
+
+8. EXAMPLE 
+#include <iostream>
+
+void foo()
+{
+#define MY_NAME "Alex"
+}
+
+int main()
+{
+	std::cout << "My name is: " << MY_NAME << '\n';
+
+	return 0;
+}
+
+Even though it looks like #define MY_NAME “Alex” is defined inside function foo, the preprocessor doesn’t understand C++ concepts like functions.
