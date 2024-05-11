@@ -31,3 +31,61 @@ int main()
 
 	return 0;
 }
+
+
+4. An argument is a value that is passed from the caller to the function when a function call is made:
+
+doPrint(); // this call has no arguments
+printValue(6); // 6 is the argument passed to function printValue()
+add(2, 3); // 2 and 3 are the arguments passed to function add()
+
+
+
+5. When a function is called, all of the parameters of the function are created as variables, and the value of each of the arguments is copied into the matching parameter (using copy initialization). This process is called pass by value. Function parameters that utilize pass by value are called value parameters.
+
+In this program, variable num is first initialized with the value entered by the user. Then, function printDouble is called, and the value of argument num is copied into the value parameter of function printDouble. Function printDouble then uses the value of parameter value.
+
+#include <iostream>
+
+int getValueFromUser()
+{
+ 	std::cout << "Enter an integer: ";
+	int input{};
+	std::cin >> input;
+
+	return input;
+}
+
+void printDouble(int value) // This function now has an integer parameter
+{
+	std::cout << value << " doubled is: " << value * 2 << '\n';
+}
+
+int main()
+{
+	int num { getValueFromUser() };
+
+	printDouble(num);
+
+	return 0;
+}
+
+
+6. Unreferenced parameters
+	In certain cases, you will encounter functions that have parameters that are not used in the body of the function. These are called unreferenced parameters.
+	void doSomething(int count) // warning: unreferenced parameter count
+{
+    // This function used to do something with count but it is not used any longer
+}
+
+int main()
+{
+    doSomething(4);
+
+    return 0;
+}
+
+7.  Therefore, in cases where a function parameter needs to exist but is not used in the body of the function, you can simply omit the name. A parameter without a name is called an unnamed parameter
+void doSomething(int) // ok: unnamed parameter will not generate warning
+{
+}
