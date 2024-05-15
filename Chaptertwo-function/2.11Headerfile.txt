@@ -1,0 +1,49 @@
+1-Header files allow us to put declarations in one location( put all forward declarations in one place)
+
+2-- Avoid #including .cpp files. 
+    Doing so can cause naming collisions between source files.
+    In a large project it can be hard to avoid one definition rules (ODR) issues.
+    Any change to such a .cpp file will cause both the .cpp file and any other .cpp file that includes it to recompile, which can take a long time. Headers tend to change less often than source files.
+    It is non-conventional to do so.
+
+
+3- Use double quotes to include header files that you’ve written or are expected to be found in the current directory.
+Use angled brackets to include headers that come with your compiler, OS, or third-party libraries you’ve installed elsewhere on your system.
+
+4-When including a header file from the standard library, use the version without the .h extension if it exists.
+User-defined headers should still use a .h extension
+
+
+-5
+#include "headers/myHeader.h"
+#include "../moreHeaders/myOtherHeader.h"
+
+A better method is to tell your compiler or IDE that you have a bunch of header files in some other location, 
+so that it will look there when it can’t find them in the current directory. 
+This can generally be done by setting an include path or search directory in your IDE project settings.
+
+For VS Code users
+
+In your tasks.json configuration file, add a new line in the “Args” section:
+"-I/source/includes",
+
+6- To maximize the chance that missing includes will be flagged by compiler, order your #includes as follows:
+
+The paired header file
+Other headers from your project
+3rd party library headers
+Standard library headers
+The headers for each grouping should be sorted alphabetically (unless the documentation for a 3rd party library instructs you to do otherwise).
+
+
+7. Here are a few more recommendations for creating and using header files.
+
+- Always include header guards (we’ll cover these next lesson).
+- Do not define variables and functions in header files (for now).
+- Give a header file the same name as the source file it’s associated with (e.g. grades.h is paired with grades.cpp).
+- Each header file should have a specific job, and be as independent as possible. For example, you might put all your declarations related to functionality A in A.h and all your declarations related to functionality B in B.h. That way if you only care about A later, you can just include A.h and not get any of the stuff related to B.
+- Be mindful of which headers you need to explicitly include for the functionality that you are using in your code files, to avoid inadvertent transitive includes.
+- A header file should #include any other headers containing functionality it needs. Such a header should compile successfully when #included into a .cpp file by itself.
+- Only #include what you need (don’t include everything just because you can).
+- Do not #include .cpp files.
+- Prefer putting documentation on what something does or how to use it in the header. It’s more likely to be seen there. Documentation describing how something works should remain in the source files.
