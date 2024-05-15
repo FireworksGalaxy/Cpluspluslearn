@@ -3,4 +3,12 @@
 - Json task and Settings of JSON files
 - Run Multiple files in lesson 2.8
 - Install the MINGW, and VS Code again
-- 
+-  
+
+
+
+%% Things to Add in .json file:
+1. Compiling to cpp file linkage ! (add.cpp, main.cpp) without coding g++ -o combine add.cpp main.cpp 
+2. Debug mode and Release mode
+3. Include Directories to remove dependencies of code place ( agar header ha to yek directory bashan va oona ro to folder dige bezaraim, ba inkar mostaghel as directory beshan)
+4. 
