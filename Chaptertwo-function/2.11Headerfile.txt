@@ -47,3 +47,13 @@ The headers for each grouping should be sorted alphabetically (unless the docume
 - Only #include what you need (don’t include everything just because you can).
 - Do not #include .cpp files.
 - Prefer putting documentation on what something does or how to use it in the header. It’s more likely to be seen there. Documentation describing how something works should remain in the source files.
+
+
+8. When to Define the in header file:
+In future lessons, we will encounter additional kinds of definitions that can be safely defined in header files (because they are exempt from the ODR).
+This includes definitions for 
+            inline functions,
+            inline variables,
+            types, and 
+            templates.
+
