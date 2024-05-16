@@ -14,3 +14,12 @@ EXAMPLE:
 // your declarations (and certain types of definitions) here
 
 #endif
+
+
+2. #Progma once
+#pragma once serves the same purpose as header guards: to avoid a header file from being included multiple times. 
+With traditional header guards, the developer is responsible for guarding the header (by using preprocessor directives #ifndef, #define, and #endif).
+With #pragma once, we’re requesting that the compiler guard the header. How exactly it does this is an implementation-specific detail.
+
+===> #pragma once, do not expect a pragma that works on one compiler to be supported by another.
+     Because #pragma once is not defined by the C++ standard, it is possible that some compilers may not implement it
