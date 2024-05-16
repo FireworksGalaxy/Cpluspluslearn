@@ -1,0 +1,16 @@
+
+- Header guard: 
+
+When this header is #included, the preprocessor checks whether SOME_UNIQUE_NAME_HERE has been previously defined.
+If this is the first time we’re including the header, SOME_UNIQUE_NAME_HERE will not have been defined. Consequently, 
+it #defines SOME_UNIQUE_NAME_HERE and includes the contents of the file. If the header is included again into the same file,
+SOME_UNIQUE_NAME_HERE will already have been defined from the first time the contents of the header were included, 
+and the contents of the header will be ignored (thanks to the #ifndef).
+
+EXAMPLE:
+#ifndef SOME_UNIQUE_NAME_HERE
+#define SOME_UNIQUE_NAME_HERE
+
+// your declarations (and certain types of definitions) here
+
+#endif
