@@ -3,7 +3,9 @@
 - Json task and Settings of JSON files
 - Run Multiple files in lesson 2.8
 - Install the MINGW, and VS Code again
--  
+- 3rd Party for debugging the code
+- Formatting: How to use clang-formatting
+- 
 
 
 
