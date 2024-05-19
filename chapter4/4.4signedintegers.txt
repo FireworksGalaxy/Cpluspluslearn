@@ -1,0 +1,51 @@
+
+-- An integer is an integral type that can represent positive and negative whole numbers, including 0
+
+
+==>TABLE<==
+
+Type	              Minimum Size	      Note
+short int	          16 bits	
+int	                16 bits	             Typically 32 bits on modern architectures
+long int	          32 bits	
+long long int      	64 bits
+
+
+-- By default, integers in C++ are signed, which means the number’s sign is stored as part of the number
+
+--   short s;      // prefer "short" instead of "short int"
+     int i;
+     long l;       // prefer "long" instead of "long int"
+     long long ll; // prefer "long long" instead of "long long int"
+
+--     signed short ss;
+       signed int si;
+       signed long sl;
+       signed long long sll;
+However, this keyword should not be used, as it is redundant, since integers are signed by default.
+
+-- Math time: an 8-bit integer contains 8 bits. 28 is 256, so an 8-bit integer can hold 256 possible values.
+   There are 256 possible values between -128 to 127, inclusive.
+   7 bits are used to hold the magnitude of the number, and 1 bit is used to hold the sign.     
+
+
+--    Size/Type          	Range
+      8  bit signed	      -128 to 127
+      16 bit signed	      -32,768 to 32,767
+      32 bit signed	      -2,147,483,648 to 2,147,483,647
+      64 bit signed	      -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807
+
+
+--   What happens if we try to assign the value 140 to an 8-bit signed integer? 
+     This number is outside the range that an 8-bit signed integer can hold.
+     The number 140 requires 9 bits to represent (8 magnitude bits and 1 sign bit),
+     but we only have 8 bits (7 magnitude bits and 1 sign bit) available in an 8-bit signed integer.
+
+--   The C++20 standard makes this blanket statement: “If during the evaluation of an expression, 
+     the result is not mathematically defined or not in the range of representable values for its type, 
+     the behavior is undefined”. Colloquially, this is called overflow.
+
+
+-- If an arithmetic operation (such as addition or multiplication) attempts to create a value outside the range that can be represented, 
+   this is called integer overflow (or arithmetic overflow). 
+   For signed integers, integer overflow will result in undefined behavior.     
