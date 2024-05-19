@@ -1,0 +1,10 @@
+-- Because all data on a computer is just a sequence of bits, we use a data type (often called a “type” for short) 
+   to tell the compiler how to interpret the contents of memory in some meaningful way. 
+
+-- C++ comes with built-in support for many different data types. These are called fundamental data types,
+   but are often informally called basic types, primitive types, or built-in types.
+
+-- Many of the types defined in newer versions of C++ (e.g. std::nullptr_t) use a _t suffix. This suffix means “type”, and it’s a common nomenclature applied to modern types.
+   If you see something with a _t suffix, it’s probably a type. But many types don’t have a _t suffix, so this isn’t consistently applied.
+
+-- void value; // won't work, variables can't be defined with incomplete type void
