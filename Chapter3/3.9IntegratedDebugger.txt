@@ -1,0 +1,6 @@
+-- you can add variable in watch ! such as : X+2
+-- This is a primitive form of unit testing, which is a software testing method by which small units of source code are tested to determine whether they are correct.
+
+Defensive programming is a practice whereby the programmer tries to anticipate all of the ways the software could be misused, either by end-users, 
+or by other developers (including the programmer themselves) using the code. 
+These misuses can often be detected and then mitigated (e.g. by asking a user who entered bad input to try again).
