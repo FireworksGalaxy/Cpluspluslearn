@@ -1,0 +1,8 @@
+3.1 — Syntax and semantic errors
+
+A syntax error occurs when you write a statement that is not valid according to the grammar of the C++ language.
+This includes errors such as missing semicolons, using undeclared variables, mismatched parentheses or braces, etc…
+
+
+A semantic error occurs when a statement is syntactically valid, but does not do what the programmer intended.
+Sometimes these will cause your program to crash, such as in the case of division by zero:
