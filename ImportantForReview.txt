@@ -5,7 +5,10 @@
 - Install the MINGW, and VS Code again
 - 3rd Party for debugging the code
 - Formatting: How to use clang-formatting
-- 
+- Use a static analysis tool on your programs to help find areas where your code is non-compliant with best practices: 
+  1.clang-tidy 2. cpplint 3. cppcheck (already integrated into Code::Blocks) 4.SonarLint
+
+
 
 
 
