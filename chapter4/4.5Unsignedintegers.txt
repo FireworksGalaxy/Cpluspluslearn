@@ -1,0 +1,2 @@
+
+-- Unsigned integers are integers that can only hold non-negative whole numbers.
