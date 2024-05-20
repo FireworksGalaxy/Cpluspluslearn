@@ -1,0 +1,6 @@
+
+-- Scientific notation is a useful shorthand for writing lengthy numbers in a concise manner.
+-- The digits in the significand (the part before the ‘e’) are called the significant digits (or significant figures).   // 1.2e4
+
+## 2100 = 2.1e3 (trailing zeros assumed not significant)
+   2100 = 2.100e3 (trailing zeros known significant)
