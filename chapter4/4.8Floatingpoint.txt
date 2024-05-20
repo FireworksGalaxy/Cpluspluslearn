@@ -1,0 +1,94 @@
+-- Favor double over float unless space is at a premium, as the lack of precision in a float will often lead to inaccuracies.
+
+-- 
+Category	              Type	            Minimum Size	          Typical Size
+---------------------------------------------------------
+floating point	        float	            4 bytes                	4 bytes
+                        double	          8 bytes	                8 bytes
+                        long double	      8 bytes	                8, 12, or 16 bytes
+
+
+
+Size	                      Range	                                                                       Precision
+------------------------------------------------------------------------------------------------------------------------------------
+4 bytes	                  ±1.18 x 10-38 to ±3.4 x 1038 and 0.0	                                        6-9 significant digits, typically 7
+8 bytes                  	±2.23 x 10-308 to ±1.80 x 10308 and 0.0                                      	15-18 significant digits, typically 16
+80-bits                   (typically uses 12 or 16 bytes)	±3.36 x 10-4932 to ±1.18 x 104932 and 0.0	    18-21 significant digits //old
+16 bytes	                ±3.36 x 10-4932 to ±1.18 x 104932 and 0.0	                                    33-36 significant digits
+
+
+
+Important Example 1:
+#include <iostream>
+
+int main()
+{
+    std::cout << 9.87654321f << '\n';                    \\ 9.87654
+    std::cout << 987.654321f << '\n';                    \\ 987.654
+    std::cout << 987654.321f << '\n';                    \\ 987654
+    std::cout << 9876543.21f << '\n';                    \\ 9.87654e+006
+    std::cout << 0.0000987654321f << '\n';               \\ 9.87654e-005
+
+    return 0;
+}
+
+
+@@@ SetPrecision:
+We can override the default precision that std::cout shows by using an output manipulator function named std::setprecision(). 
+Output manipulators alter how data is output, and are defined in the iomanip header.
+
+#include <iomanip> // for output manipulator std::setprecision()
+#include <iostream>
+
+int main()
+{
+    std::cout << std::setprecision(17); // show 17 digits of precision
+    std::cout << 3.33333333333333333333333333333333333333f <<'\n'; // f suffix means float        3.3333332538604736
+    std::cout << 3.33333333333333333333333333333333333333 << '\n'; // no suffix means double      3.3333333333333335
+
+    return 0;
+}
+
+NOTE 1: Output manipulators (and input manipulators) are sticky -- meaning if you set them, they will remain set.
+NOTE 2: The one exception is std::setw. Some IO operations reset std::setw, so std::setw should be used every time it is needed.
+
+################################################################################################################################
+  
+ROUNDING ERROR:
+  
+#include <iomanip> // for std::setprecision()
+#include <iostream>
+
+int main()
+{
+    float f { 123456789.0f }; // f has 10 significant digits
+    std::cout << std::setprecision(9); // to show 9 digits in f
+    std::cout << f << '\n'; 123456792                           
+
+    return 0;
+}
+
+Output: 123456792==> different numbers due to the rounding errors!
+---------------------------------------------------------------------------  
+#include <iomanip> // for std::setprecision()
+#include <iostream>
+
+int main()
+{
+    double d{0.1};
+    std::cout << d << '\n'; // use default cout precision of 6
+    std::cout << std::setprecision(17);
+    std::cout << d << '\n';
+
+    return 0;
+}
+Output:
+0.1
+0.10000000000000001
+Truncating error!
+-------------------------------------------------------------------------------
+  
+
+
+
+
