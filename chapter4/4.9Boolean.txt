@@ -1,0 +1,36 @@
+To produce True/False rather than the 0 or 1:
+
+#include <iostream>
+
+int main()
+{
+    std::cout << true << '\n';     // 1
+    std::cout << false << '\n';    // 0
+
+    std::cout << std::boolalpha; // print bools as true or false
+
+    std::cout << true << '\n';    // true
+    std::cout << false << '\n';   // false
+    return 0;
+}
+
+-----------------------------------------------------------
+-- To allow std::cin to accept “false” and “true” as inputs, the std::boolalpha option has to be enabled:
+-- Enabling std::boolalpha will only allow lower-cased “false” or “true” to be accepted. Variations with capital letters will not be accepted.
+#include <iostream>
+
+int main()
+{
+	bool b{};
+	std::cout << "Enter a boolean value: ";
+
+	// Allow the user to enter 'true' or 'false' for boolean values
+	// This is case-sensitive, so True or TRUE will not work
+	std::cin >> std::boolalpha;
+	std::cin >> b;
+
+	std::cout << "You entered: " << b << '\n';
+
+	return 0;
+}
+--------------------------------------------------------------
