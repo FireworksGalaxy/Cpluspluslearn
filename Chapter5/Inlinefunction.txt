@@ -1,0 +1,35 @@
+1. Inline expansion is best suited to simple, short functions (e.g. no more than a few statements), 
+   especially cases where a single function call can be executed more than once (e.g. function calls inside a loop).
+
+2. Modern optimizing compilers make the decision about when functions should be expanded inline.
+3. A function that is declared using the inline keyword is called an inline function.
+
+4. However, in modern C++, the inline keyword is no longer used to request that a function be expanded inline. There are quite a few reasons for this:
+
+    The inline keyword is just a hint -- the compiler is completely free to ignore a request to inline a function. 
+    This is likely to be the result if you try to inline a lengthy function!
+    The compiler is also free to perform inline expansion of functions that do not use the inline keyword as part of its normal set of optimizations.
+
+5. In modern C++, the term inline has evolved to mean “multiple definitions are allowed”. 
+Thus, an inline function is one that is allowed to be defined in multiple translation units (without violating the ODR)
+
+-- The compiler needs to be able to see the full definition of an inline function wherever it is used,
+    and all such definitions must be identical (or undefined behavior will result).
+
+
+
+6. Avoid the use of the inline keyword unless you have a specific, compelling reason to do so (e.g. you’re defining those functions or variables in a header file).
+
+Point 1, 5, and 6 are the most important points.
+
+7. Look at the learn cpp page for the Example of using inline functions in different files. 
+
+8. Why not make all functions inline and defined in a header file?
+
+There are a few good reasons:
+
+It can increase your compile times. When a function in a code file changes, only that code file needs to be recompiled.
+When an inline function in a header file changes, every code file that includes that header (either directly or via another header) needs to recompiled.
+On large projects, this can have a drastic impact.
+
+It can lead to more naming collisions since you’ll end up with more code in a single code file.
