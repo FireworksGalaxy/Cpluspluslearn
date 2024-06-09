@@ -1,0 +1,101 @@
+=========================================****************************=========================================
+#include <iostream>
+
+int main()
+{
+    std::cout << "Hello, world!"; // "Hello world!" is a C-style string literal.
+    return 0;
+}
+
+1. C-style string variables behave oddly, are hard to work with
+2. C-style string are dangerous for copy the data( you can miss, add some data)
+3. C++ has introduced two additional string types into the language that are much easier and safer to work with: std::string and std::string_view
+4. std::string and std::string_view aren’t fundamental types (they’re class types, which we’ll cover in the future
+
+=========================================****************************=========================================
+Std::string
+1. The easiest way to work with strings and string objects in C++ is via the std::string type, which lives in the <string> header.
+2. ==> Example:
+#include <string> // allows use of std::string
+
+int main()
+{
+    std::string name {}; // empty string
+
+    return 0;
+}
+=========================================****************************=========================================
+If std::string doesn’t have enough memory to store a string=> use dynamic memory allocation==> makes it flexible but slow comparatively.
+=========================================****************************=========================================
+==> this won't work as expected since std::cin breaks on whitespace
+#include <iostream>
+#include <string>
+
+int main()
+{
+    std::cout << "Enter your full name: ";
+    std::string name{};
+    std::cin >> name; // this won't work as expected since std::cin breaks on whitespace
+
+    std::cout << "Enter your favorite color: ";
+    std::string color{};
+    std::cin >> color;
+
+    std::cout << "Your name is " << name << " and your favorite color is " << color << '\n';
+
+    return 0;
+}
+
+==> Solution::
+#include <iostream>
+#include <string> // For std::string and std::getline
+
+int main()
+{
+    std::cout << "Enter your full name: ";
+    std::string name{};
+    std::getline(std::cin >> std::ws, name); // read a full line of text into name
+
+    std::cout << "Enter your favorite color: ";
+    std::string color{};
+    std::getline(std::cin >> std::ws, color); // read a full line of text into color
+
+    std::cout << "Your name is " << name << " and your favorite color is " << color << '\n';
+
+    return 0;
+}
+getline(std::cin >> std::ws, color), two inputs, one is in>> and the other one is value
+
+=========================================****************************=========================================
+Length of the String
+
+#include <iostream>
+#include <string>
+
+int main()
+{
+    std::string name{ "Alex" };
+    std::cout << name << " has " << name.length() << " characters\n"; // It is unsigned integer
+
+    return 0;
+}
+Point 1==> To find the length of the string which is unsigned integer.
+Point 2==> int length { static_cast<int>(name.length()) }; // we use static cast to change it to integer
+Point 3==>  another method is to use  std::ssize() function  // 
+=========================================****************************=========================================
+Do not pass std::string by value, as it makes an expensive copy.
+=========================================****************************=========================================
+==> Using suffix S to convert the C-style to string
+
+#include <iostream>
+#include <string> // for std::string
+
+int main()
+{
+    using namespace std::string_literals; // easy access to the s suffix
+
+    std::cout << "foo\n";   // no suffix is a C-style string literal
+    std::cout << "goo\n"s;  // s suffix is a std::string literal
+
+    return 0;
+}
